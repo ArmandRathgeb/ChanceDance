@@ -1,7 +1,8 @@
 class Settings:
-    X = 600
-    Y = 600
+    def __init__(self):
+        self.X = 600
+        self.Y = 600
 
-    white = (255,255,255)
-    black = (0,0,0)
-    red = (255,0,0)
+        self.white = (255,255,255)
+        self.black = (0,0,0)
+        self.red = (255,0,0)

@@ -1,4 +1,4 @@
-from random import randrange
+from random import choice
 from settings import Settings 
 import pygame
 
@@ -19,17 +19,24 @@ class Moves:
             "Spin":"Images/spin",
             "Step":"Images/step",
         }
+
         self.s = Settings()
 
     def get_move(self):
         '''Return a random move'''
         rand = randrange(0,2)
         if rand == 0:
-            rand = randrange(0,len(self.laban))
-            move = list(self.laban.keys())[rand]
+            move = choice(list(self.laban.keys()))
         else:
-            rand = randrange(0,len(self.transitions))
-            move = list(self.transitions.keys())[rand]
+            move = choice(list(self.transitions.keys()))
 
         return move
+
+    def show_move(self, move, screen):
+        image = pygame.image.load(laban[move])
+        img_rect = image.get_rect()
+        
+
+    def walk(self):
+
 

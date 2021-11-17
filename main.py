@@ -46,14 +46,18 @@ class Main:
                         runs = runs[:-1]
                     elif event.key == pygame.K_RETURN:
                         return runs
+            self.disp_text(16,runs,(self.X//3+32,self.Y//3+128))
 
     def run(self):
         '''Main game loop'''
         for i in range(0, self.length):
             self.screen.fill(self.s.black)
             self.draw_stage()
+
             move = self.moves.get_move()
             self.disp_text(16, move, (24,self.Y-16))
+            moves.show_move(move, self.screen)
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
