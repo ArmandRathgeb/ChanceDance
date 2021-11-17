@@ -10,7 +10,6 @@ class Main:
         self.X = self.s.X
         self.Y = self.s.Y
 
-        self.screen = pygame.display.set_mode((self.X,self.Y))
         pygame.display.set_caption("Chance Dance")
         self.disp_text(32, 'How many dance moves?', (self.X//2,self.Y//2))
         self.length = int(self.user_input())
@@ -20,7 +19,7 @@ class Main:
         for i in range(0,self.X,self.X//3):
             for j in range(0,self.Y,self.Y//3):
                 pygame.draw.rect(
-                    self.screen,self.s.red,pygame.Rect((i,j),
+                    self.s.screen,self.s.red,pygame.Rect((i,j),
                     (self.X//3,self.Y//3)),1
                 )
 
@@ -30,7 +29,7 @@ class Main:
         text = font.render(string, True, self.s.white, self.s.black)
         text_rect = text.get_rect()
         text_rect.center = pos
-        self.screen.blit(text, text_rect)
+        self.s.screen.blit(text, text_rect)
         pygame.display.flip()
 
 
@@ -51,12 +50,14 @@ class Main:
     def run(self):
         '''Main game loop'''
         for i in range(0, self.length):
-            self.screen.fill(self.s.black)
+            self.s.screen.fill(self.s.black)
             self.draw_stage()
 
             move = self.moves.get_move()
             self.disp_text(16, move, (24,self.Y-16))
-            moves.show_move(move, self.screen)
+            self.moves.show_move(move)
+            self.moves.walk()
+
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
