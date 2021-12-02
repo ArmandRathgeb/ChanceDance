@@ -24,6 +24,7 @@ class Moves():
         self.s = Settings()
         self.X = self.s.X//2
         self.Y = self.s.Y//2
+        self.pos =  "Centerstage center"
 
     def get_move(self):
         '''Return a random move'''
@@ -52,21 +53,27 @@ class Moves():
         if self.rand != 0:
             Xnew = 0
             Ynew = 0
-            if self.X == self.s.X//6:
-                Xnew = choice([0,200])
-            elif self.X == self.s.X//3:
-                Xnew = choice([-200,0,200])
-            elif self.X == self.s.X//2:
-                Xnew = choice([-200,0])
+            self.pos = ""
             if self.Y == self.s.Y//6:
                 Ynew = choice([0,200])
+                self.pos += "Upstage "
             elif self.Y == self.s.Y//3:
                 Ynew = choice([-200,0,200])
+                self.pos += "Centerstage "
             elif self.Y == self.s.Y//2:
                 Ynew = choice([0,200])
+                self.pos += "Downstage "
+            if self.X == self.s.X//6:
+                Xnew = choice([0,200])
+                self.pos += "left"
+            elif self.X == self.s.X//3:
+                Xnew = choice([-200,0,200])
+                self.pos += "center"
+            elif self.X == self.s.X//2:
+                Xnew = choice([-200,0])
+                self.pos += "right"
+
             self.X += Xnew
             self.Y += Ynew
             self.s.screen.blit(self.image,self.img_rect)
-
-
-
+        return self.pos

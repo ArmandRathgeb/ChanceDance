@@ -13,6 +13,7 @@ class Main:
         pygame.display.set_caption("Chance Dance")
         self.disp_text(32, 'How many dance moves?', (self.X//2,self.Y//2))
         self.length = int(self.user_input())
+        self.filename = "moves_"+str(time.time())+".txt"
 
     def draw_stage(self):
         '''Draw stage positions (upstage center etc.)'''
@@ -49,21 +50,24 @@ class Main:
 
     def run(self):
         '''Main game loop'''
-        for i in range(0, self.length):
-            self.s.screen.fill(self.s.black)
-            self.draw_stage()
+        with open(self.filename, "w") as f:
+            for i in range(0, self.length):
+                self.s.screen.fill(self.s.black)
+                self.draw_stage()
 
-            move = self.moves.get_move()
-            self.disp_text(16, move, (24,self.Y-16))
-            self.moves.show_move(move)
-            self.moves.walk()
+                move = self.moves.get_move()
+                self.disp_text(16, move, (24,self.Y-16))
+                self.moves.show_move(move)
+                square = self.moves.walk()
+                f.write("Move: " + move + "\r\n")
+                f.write("Square: " + square + "\r\n")
+                f.write("\r\n")
 
-
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
-            pygame.display.flip()
-            time.sleep(1)
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        sys.exit()
+                pygame.display.flip()
+                time.sleep(1)
 
 if __name__ == '__main__':
     game = Main()
