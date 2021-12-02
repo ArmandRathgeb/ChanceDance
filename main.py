@@ -46,7 +46,7 @@ class Main:
                         runs = runs[:-1]
                     elif event.key == pygame.K_RETURN:
                         return runs
-            self.disp_text(16,runs,(self.X//3+32,self.Y//3+128))
+            self.disp_text(16,runs,(self.X//2+32,self.Y//2+128))
 
     def run(self):
         '''Main game loop'''

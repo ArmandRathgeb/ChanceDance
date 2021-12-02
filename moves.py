@@ -55,22 +55,22 @@ class Moves():
             Ynew = 0
             self.pos = ""
             if self.Y == self.s.Y//6:
-                Ynew = choice([0,200])
+                Ynew = choice([0,self.s.Y//3])
                 self.pos += "Upstage "
             elif self.Y == self.s.Y//3:
-                Ynew = choice([-200,0,200])
+                Ynew = choice([-self.s.Y//3,0,self.s.Y//3])
                 self.pos += "Centerstage "
             elif self.Y == self.s.Y//2:
-                Ynew = choice([0,200])
+                Ynew = choice([-self.s.Y//3,0])
                 self.pos += "Downstage "
             if self.X == self.s.X//6:
-                Xnew = choice([0,200])
+                Xnew = choice([0,self.s.X//3])
                 self.pos += "left"
             elif self.X == self.s.X//3:
-                Xnew = choice([-200,0,200])
+                Xnew = choice([-self.s.X//3,0,self.s.X//3])
                 self.pos += "center"
             elif self.X == self.s.X//2:
-                Xnew = choice([-200,0])
+                Xnew = choice([-self.s.X//3,0])
                 self.pos += "right"
 
             self.X += Xnew
